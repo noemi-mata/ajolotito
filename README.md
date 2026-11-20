@@ -72,3 +72,6 @@
 
 ## APP FUNCIONANDO
 
+<img width="347" height="692" alt="image" src="https://github.com/user-attachments/assets/afa892e2-d2c8-4979-a4a6-dda43349d1a2" />
+
+<img width="346" height="688" alt="image" src="https://github.com/user-attachments/assets/1948edc0-a48e-4ba8-8265-46a822e043b9" />
