@@ -83,7 +83,7 @@ class PuertoReal implements PuertoNotificaciones {
         actions: c == Categoria.hambre
             ? const [
                 AndroidNotificationAction(_accionAlimentar, 'Dar de comer 🍤',
-                    showsUserInterface: true)
+                    showsUserInterface: true),
               ]
             : null,
       ),
@@ -100,7 +100,8 @@ class PuertoReal implements PuertoNotificaciones {
     final android =
         _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     if (android != null) return await android.areNotificationsEnabled() ?? false;
-    final ios = _plugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+    final ios =
+        _plugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
     if (ios != null) return (await ios.checkPermissions())?.isEnabled ?? false;
     return true;
   }
@@ -110,8 +111,11 @@ class PuertoReal implements PuertoNotificaciones {
     final android =
         _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     if (android != null) return await android.requestNotificationsPermission() ?? false;
-    final ios = _plugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
-    if (ios != null) return await ios.requestPermissions(alert: true, badge: true, sound: true) ?? false;
+    final ios =
+        _plugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+    if (ios != null) {
+      return await ios.requestPermissions(alert: true, badge: true, sound: true) ?? false;
+    }
     return true;
   }
 
@@ -155,7 +159,9 @@ class PuertoReal implements PuertoNotificaciones {
     final detalles = await _plugin.getNotificationAppLaunchDetails();
     if (detalles?.didNotificationLaunchApp ?? false) {
       final r = detalles!.notificationResponse;
-      if (r?.actionId == _accionAlimentar) return const PayloadNotif(Destino.alimentarYa).codificar();
+      if (r?.actionId == _accionAlimentar) {
+        return const PayloadNotif(Destino.alimentarYa).codificar();
+      }
       return r?.payload;
     }
     return null;

@@ -95,9 +95,18 @@ void main() {
       expect(Mascota.desdeTexto('esto no es json'), isNull);
       expect(Mascota.desdeTexto('[1,2,3]'), isNull);
       expect(Mascota.desdeTexto('{"nombre":"X"}'), isNull);
-      expect(Mascota.desdeTexto('{"nombre":"X","saciedadBase":500,"desde":"2026-01-01T00:00:00","puntosPorHora":10}'), isNull);
-      expect(Mascota.desdeTexto('{"nombre":"X","saciedadBase":50,"desde":"ayer","puntosPorHora":10}'), isNull);
-      expect(Mascota.desdeTexto('{"nombre":"X","saciedadBase":50,"desde":"2026-01-01T00:00:00","puntosPorHora":0}'), isNull);
+      expect(
+          Mascota.desdeTexto(
+              '{"nombre":"X","saciedadBase":500,"desde":"2026-01-01T00:00:00","puntosPorHora":10}'),
+          isNull);
+      expect(
+          Mascota.desdeTexto(
+              '{"nombre":"X","saciedadBase":50,"desde":"ayer","puntosPorHora":10}'),
+          isNull);
+      expect(
+          Mascota.desdeTexto(
+              '{"nombre":"X","saciedadBase":50,"desde":"2026-01-01T00:00:00","puntosPorHora":0}'),
+          isNull);
     });
   });
 }

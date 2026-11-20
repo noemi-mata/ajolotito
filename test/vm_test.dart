@@ -44,7 +44,8 @@ void main() {
     expect(vm.programadas, isNotEmpty);
   });
 
-  test('si el usuario rechaza, no se programa nada y la siguiente vez lo mandamos a Ajustes', () async {
+  test('si el usuario rechaza, no se programa nada y la siguiente vez lo mandamos a Ajustes',
+      () async {
     puerto.usuarioAcepta = false;
     await vm.iniciar(conReloj: false);
     expect(await vm.activarAvisos(), ResultadoPermiso.denegado);

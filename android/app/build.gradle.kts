@@ -1,22 +1,23 @@
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    // The Flutter Gradle Plugin must be applied after the Android Gradle plugin.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-android {
+// AGP 9: se configura con ApplicationExtension (el bloque "android { }" quedó obsoleto)
+extensions.configure<ApplicationExtension> {
     namespace = "com.example.ajolotito"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        // Necesario para flutter_local_notifications
         isCoreLibraryDesugaringEnabled = true
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        // Java y Kotlin deben compilar para la MISMA versión (Kotlin usa 21)
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     defaultConfig {
@@ -28,16 +29,17 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
+            // Firma de depuración para que `flutter run --release` funcione.
             signingConfig = signingConfigs.getByName("debug")
         }
     }
 }
 
-flutter {
-    source = "../.."
-}
-
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}
+
+flutter {
+    source = "../.."
 }

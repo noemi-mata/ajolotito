@@ -56,7 +56,8 @@ void main() {
   });
 
   group('alimentar reemplaza el aviso viejo (nada de notificaciones obsoletas)', () {
-    test('tras comer a las 15:00, el hambre se reprograma a las 19:30 y el crítico a las 8:00', () async {
+    test('tras comer a las 15:00, el hambre se reprograma a las 19:30 y el crítico a las 8:00',
+        () async {
       await servicio.alPasarAFondo(); // hambre programada 16:00
       reloj.fijar(d(12, 15)); // saciedad 50
       await servicio.alVolverAlFrente();
@@ -99,7 +100,8 @@ void main() {
   });
 
   group('modo clase (tiempo acelerado)', () {
-    test('con ritmo 600, hambre a los 6 min y crítico a los 8.5 min; ambos se conservan', () async {
+    test('con ritmo 600, hambre a los 6 min y crítico a los 8.5 min; ambos se conservan',
+        () async {
       await servicio.cambiarRitmo(ServicioAjolote.ritmoClase);
       await servicio.alPasarAFondo();
       expect(puerto.programadas[Ids.hambre]!.cuando, d(12, 10, 6));

@@ -8,7 +8,8 @@ void main() {
   DateTime d(int dia, int h, [int m = 0]) => DateTime(2026, 11, dia, h, m);
   const plani = Planificador();
 
-  test('día normal: hambre 16:00, sorpresa 18:00, crítico 18:30 y sorpresas de los días siguientes', () {
+  test('día normal: hambre 16:00, sorpresa 18:00, crítico 18:30 y sorpresas de los días siguientes',
+      () {
     final ahora = d(12, 10);
     final plan = plani.planear(Mascota.nueva('Xólotl', ahora), ahora);
     expect(plan.map((p) => (p.id, p.cuando)).toList(), [
@@ -74,14 +75,16 @@ void main() {
     test('pasadas las 18:00, la primera sorpresa es mañana', () {
       final ahora = d(12, 19);
       final m = Mascota.nueva('X', ahora);
-      final s = plani.planear(m, ahora).where((p) => p.categoria == Categoria.sorpresa).toList();
+      final s =
+          plani.planear(m, ahora).where((p) => p.categoria == Categoria.sorpresa).toList();
       expect(s.map((p) => p.cuando), [d(13, 18), d(14, 18), d(15, 18)]);
     });
   });
 
   group('categorías apagadas por el usuario', () {
     test('sin hambre: solo sorpresas', () {
-      const sinHambre = Planificador(politica: PoliticaNotificaciones(activas: {Categoria.sorpresa}));
+      const sinHambre =
+          Planificador(politica: PoliticaNotificaciones(activas: {Categoria.sorpresa}));
       final ahora = d(12, 10);
       final plan = sinHambre.planear(Mascota.nueva('X', ahora), ahora);
       expect(plan.every((p) => p.categoria == Categoria.sorpresa), isTrue);

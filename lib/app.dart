@@ -22,7 +22,8 @@ class _AppAjoloteState extends State<AppAjolote> with WidgetsBindingObserver {
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) => widget.vm.alCambiarCicloDeVida(state);
+  void didChangeAppLifecycleState(AppLifecycleState state) =>
+      widget.vm.alCambiarCicloDeVida(state);
 
   @override
   void dispose() {

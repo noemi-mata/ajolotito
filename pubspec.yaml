@@ -13,7 +13,7 @@ dependencies:
   flutter_local_notifications: ">=20.1.0 <24.0.0"
   timezone: ^0.10.0
   shared_preferences: ^2.3.0
-  app_settings: ^5.1.1
+  app_settings: ^8.0.3
 
 dev_dependencies:
   flutter_test:

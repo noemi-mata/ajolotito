@@ -41,7 +41,8 @@ class PantallaAjolote extends StatelessWidget {
           content: const Text('Puedes activarlos en los ajustes del sistema.'),
           actions: [
             TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Cancelar')),
-            FilledButton(onPressed: () => Navigator.pop(c, true), child: const Text('Abrir ajustes')),
+            FilledButton(
+                onPressed: () => Navigator.pop(c, true), child: const Text('Abrir ajustes')),
           ],
         ),
       );
@@ -54,7 +55,9 @@ class PantallaAjolote extends StatelessWidget {
     return ListenableBuilder(
       listenable: vm,
       builder: (context, _) {
-        if (!vm.listo) return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        if (!vm.listo) {
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
         final s = vm.saciedad;
         return Scaffold(
           appBar: AppBar(

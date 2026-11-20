@@ -37,8 +37,7 @@ void main() {
     test('de día no cambia nada', () => expect(p.ajustar(a(12)), a(12)));
     test('a las 23:00 pasa a las 8:00 del día siguiente',
         () => expect(p.ajustar(a(23)), DateTime(2026, 11, 13, 8)));
-    test('a las 03:00 pasa a las 8:00 del MISMO día',
-        () => expect(p.ajustar(a(3)), a(8)));
+    test('a las 03:00 pasa a las 8:00 del MISMO día', () => expect(p.ajustar(a(3)), a(8)));
     test('fin de mes: el 30 a las 23:00 pasa al 1 del mes siguiente',
         () => expect(p.ajustar(DateTime(2026, 11, 30, 23)), DateTime(2026, 12, 1, 8)));
   });
@@ -52,7 +51,15 @@ void main() {
     test('formato versionado',
         () => expect(const PayloadNotif(Destino.alimentar).codificar(), 'v1:alimentar'));
     test('basura, versión desconocida o vacío caen en inicio (nunca truena)', () {
-      for (final raro in [null, '', 'hola', 'v2:alimentar', 'v1:', 'v1:borrarTodo', 'v1:alimentar:extra']) {
+      for (final raro in [
+        null,
+        '',
+        'hola',
+        'v2:alimentar',
+        'v1:',
+        'v1:borrarTodo',
+        'v1:alimentar:extra'
+      ]) {
         expect(PayloadNotif.decodificar(raro).destino, Destino.inicio, reason: '$raro');
       }
     });

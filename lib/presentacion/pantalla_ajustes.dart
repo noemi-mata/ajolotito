@@ -17,13 +17,15 @@ class PantallaAjustes extends StatelessWidget {
         appBar: AppBar(title: const Text('Ajustes de avisos')),
         body: ListView(children: [
           ListTile(
-            leading: Icon(vm.permiso == EstadoPermiso.concedido ? Icons.check_circle : Icons.block),
+            leading:
+                Icon(vm.permiso == EstadoPermiso.concedido ? Icons.check_circle : Icons.block),
             title: Text(switch (vm.permiso) {
               EstadoPermiso.concedido => 'El sistema permite notificaciones',
               EstadoPermiso.denegado => 'El sistema las tiene bloqueadas',
               EstadoPermiso.sinPreguntar => 'Aún no has decidido',
             }),
-            trailing: TextButton(onPressed: vm.abrirAjustes, child: const Text('Ajustes del sistema')),
+            trailing:
+                TextButton(onPressed: vm.abrirAjustes, child: const Text('Ajustes del sistema')),
           ),
           const Divider(),
           for (final c in Categoria.values)
